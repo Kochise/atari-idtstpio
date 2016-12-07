@@ -10,8 +10,8 @@ You need the following to get this program working :
 * List of programs
 
 \- IDTSTPIO.PRG : device identitifer based on ATA-ATAPI 5 specification<br>
-\- \\SAVE : some previous hacks for archival purpose
-\- \\TEST : some more tests with third parties source code to consider
+\- \\SAVE : some previous hacks for archival purpose<br>
+\- \\TEST : some more tests with third parties source code to consider<br>
 
 * How to use it
 
