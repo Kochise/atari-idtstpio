@@ -1,0 +1,6 @@
+/// IDE/SCSI IDENTIFY TEST - KOSS 2001-2002 ///
+
+BUS DEV PROTOCOL TYPE     REMOVABLE VENDOR   MODEL                                    SERIAL               FIRMWARE
+
+ IDE 0  COMMAND  DIRECT   NO                 ST34310A                                 7AX117M0             3.07    
+ IDE 1  PACKET   CD-ROM   YES                FX400E                                                        K04     
