@@ -39,10 +39,6 @@ ISIT_EA_IDE_ACTIVE:	EQU	TRUE
 
 ISIT_EA_SCSI_ACTIVE:	EQU	FALSE
 
-	; SSAVCALL
-
-ISIT_EA_SSAVCALL_ACTIVE:	EQU	FALSE
-
 ; --- EQUATE DATA (ED) --------------------------------------------------------
 
 ISIT_ED_MAJOR_VERSION:	EQU	$01
@@ -255,17 +251,13 @@ ISIT_EI_SCSI_INQUIRY_ROM:	EQU	45	;
 	SECTION	TEXT
 ; /////////////////////////////////////////////////////////////////////////////	
 
-	IFNE ISIT_EA_SSAVCALL_ACTIVE ; ---------------,
-
-	BRA	ISIT_TUI_START
+;	BRA	ISIT_TUI_START
 	
-	dc.b	"ProgHEAD"	; ProgHEADER
-	dc.w	ISIT_ED_ASSEMBLY_VERSION	; ProgVERSION
-	dc.w	ISIT_ED_ASSEMBLY_DATE	; ProgDATE
-	dc.b	"IDE/SCSI ID TEST",0	; ProgNAME
-	dc.b	"Kochise",0	; ProgAUTHOR
-
-	ENDC ; ---------------------------------------'
+;	dc.b	"ProgHEAD"	; ProgHEADER
+;	dc.w	ISIT_ED_ASSEMBLY_VERSION	; ProgVERSION
+;	dc.w	ISIT_ED_ASSEMBLY_DATE	; ProgDATE
+;	dc.b	"IDE/SCSI ID TEST",0	; ProgNAME
+;	dc.b	"Kochise",0	; ProgAUTHOR
 	
 ; --- TEXT USER INIT (TUI) ----------------------------------------------------
 	
@@ -580,8 +572,8 @@ ISIT_TSM_IDE_CHECK_STATUS:	move.b	([ISIT_EI_IDE_REG_RO_SR,A6]),D0
 
 	; WARNING : Tricking device selection to check if there's any device really connected !
 	move.b	D0,D1
-	andi.b	#$F0,D1	; THE TRICK...
-	cmpi.b	#$F0,D1	; ...REVEALED!
+	andi.b	#$F0,D1
+	cmpi.b	#$F0,D1
 	BEQ	ISIT_TSM_IDE_NO_DEVICE
 
 	andi.b	#(ISIT_EI_IDE_MSK_SR_RO_BSY|ISIT_EI_IDE_MSK_SR_RO_DRQ),D0
@@ -750,7 +742,7 @@ ISIT_DDA_TITLE:	dc.b	"/// IDE/SCSI IDENTIFY TEST - KOSS 2001-2002 ///",13,10
 	dc.b	"FIRMWARE"
 	dc.b	13,10
 ISIT_DDA_NEXT_LINE:	dc.b	13,10
-	dc.b	1	; Makes the copy loop happy on its final stage
+	dc.b	1
 
 	EVEN
 
@@ -773,38 +765,38 @@ ISIT_DDA_PROTOCOL_NO_DEV_CON:	dc.b	"No Device Connected...",0
 
 	EVEN
 
-ISIT_DDA_SCSI_DEV_TYPE:	dc.b	"DIRECT  "	; 0
-	dc.b	"SEQUENT "	; 1
-	dc.b	"PRINTER "	; 2
-	dc.b	"PROCESS "	; 3
-	dc.b	"WORM    "	; 4
-	dc.b	"CD-ROM  "	; 5
-	dc.b	"SCANNER "	; 6
-	dc.b	"OPTICAL "	; 7
-	dc.b	"JUKEBOX "	; 8
-	dc.b	"COMM    "	; 9
-	dc.b	"ACS IT8 "	; 10
-	dc.b	"ACS IT8 "	; 11
-	dc.b	"ARRAY   "	; 12
-	dc.b	"ENCLOS  "	; 13
-	dc.b	"RED BLK "	; 14
-	dc.b	"OPT CARD"	; 15
-	dc.b	"Reser 16"
-	dc.b	"Reser 17"
-	dc.b	"Reser 18"
-	dc.b	"Reser 19"
-	dc.b	"Reser 20"
-	dc.b	"Reser 21"
-	dc.b	"Reser 22"
-	dc.b	"Reser 23"
-	dc.b	"Reser 24"
-	dc.b	"Reser 25"
-	dc.b	"Reser 26"
-	dc.b	"Reser 27"
-	dc.b	"Reser 28"
-	dc.b	"Reser 29"
-	dc.b	"Reser 30"
-	dc.b	"UNKNOWN "	; 31
+ISIT_DDA_SCSI_DEV_TYPE:	dc.b	"DIRECT  "
+	dc.b	"SEQUENT "
+	dc.b	"PRINTER "
+	dc.b	"PROCESS "
+	dc.b	"WORM    "
+	dc.b	"CD-ROM  "
+	dc.b	"SCANNER "
+	dc.b	"OPTICAL "
+	dc.b	"JUKEBOX "
+	dc.b	"COMM    "
+	dc.b	"ACS IT8 "
+	dc.b	"ACS IT8 "
+	dc.b	"ARRAY   "
+	dc.b	"ENCLOS  "
+	dc.b	"RED BLK "
+	dc.b	"OPT CARD"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"Reserved"
+	dc.b	"UNKNOWN "
 
 	EVEN
 	
